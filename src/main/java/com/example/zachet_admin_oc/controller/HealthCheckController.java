@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 public class HealthCheckController {
     @GetMapping
     public ResponseEntity<String> healthCheck() {
-        String message = "200ок";
+        String message = "Andryxa, po konyam. Pohody kriminal";
         return ResponseEntity.ok(message);
     }
 
