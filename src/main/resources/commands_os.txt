@@ -1,14 +1,18 @@
+ip addr
+ssh danomar@192.168.1.81
+
 sudo apt update
 sudo apt install -y openjdk-17-jdk maven nginx
-sudo mkdir -p /home/dbukin/app
-cd /home/dbukin/app
-git clone https://github.com/dpbukin/oc_zachet.git
-cd /home/dbukin/app/oc_zachet
+sudo mkdir -p /home/danomar/app
+cd /home/danomar/app
+sudo chown -R danomar:danomar /home/danomar/app
+git clone https://github.com/DanOmarXD/oc_zachet-master.git
+cd /home/danomar/app/oc_zachet-master
 mvn clean package
 sudo mkdir -p /var/www/app
 sudo cp target/zachet_admin_oc-0.0.1-SNAPSHOT.jar /var/www/app
 sudo chmod 755 /var/www/app/zachet_admin_oc-0.0.1-SNAPSHOT.jar
-sudo nano /etc/systemd/system/simple-api-service.service
+sudo nano /etc/systemd/system/java-api-service.service
 
 _________________________________________________________________
 [Unit]
@@ -16,7 +20,7 @@ Description=Java_API_Service
 After=network.target
 
 [Service]
-User=dbukin
+User=danomar
 ExecStart=/usr/bin/java -jar /var/www/app/zachet_admin_oc-0.0.1-SNAPSHOT.jar
 SuccessExitStatus=143
 Restart=always
@@ -61,13 +65,15 @@ sudo systemctl restart nginx
 ip addr - для определения ip машины
 
 Пример просмотра запроса в http
-http://192.168.1.221/health
+http://192.168.1.73/health
 
 Пример запросов:
 
-GET http://192.168.1.221/health
+http://192.168.1.82/health
 
-GET http://192.168.1.221/users/get_all_users
+http://192.168.1.82/users/get_all_users
 
-GET http://192.168.1.221/products/get_all_products
+http://192.168.1.82/products/get_all_products
 
+history
+curl
